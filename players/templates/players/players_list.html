@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Playes list{% endblock %}
+{% block content %}
+{% for player in players %}
+<li>
+    <div>
+
+        <h4>{{ player.firstname }} {{ player.lastname }}</h4>
+
+        <h5>position : {{ player.position }}</h5>
+
+        <h5>price : {{ player.price }}</h5>
+        <h5><a href="{% url 'players:detail' player.id %}"> Details </a> </h5>
+
+
+    </div>
+</li>
+    {% endfor %}
+
+{% endblock %}
