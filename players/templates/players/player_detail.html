@@ -11,6 +11,8 @@
 
         <h5>price : {{ player.price }}</h5>
 
+        <form action="{% url 'team:add' player.id %}" method="post"> {% csrf_token %}
+            <input type="submit" value="add to team"></form>
 
 
     </div>
