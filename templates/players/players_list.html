@@ -1,21 +1,27 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
 
+<div class="container mb-4 mt-3" >
+
+    <h2>Players List</h2>
+
+</div>
 <div class="container" >
     {% for player in players %}
 
     {% if forloop.first %}<div class="row">{% endif %}
-    <div class="col-lg-6 mb-4">
-        <div class="card">
-            <img class="card-img-top" src="">
-            <h5 class="card-title">{{player.firstname}} {{player.lastname}}</h5>
+    <div class="col-sm-auto mb-3">
+        <div class="card" style="width: 12rem;">
+            <img class="card-img-top" src="https://i.stack.imgur.com/6CecU.jpg">
+            <h5 class="card-title mt-2 m-auto ">{{player.firstname}} {{player.lastname}}</h5>
             <p class="card-text"> lurem ipsum</p>
-            <a href="" class="btn btn-outline-primary btn-sm">add to draft team</a>
-            <a href="" class="btn btn-outline-secondary btn-sm">details</a>
+            <a  href="" class="btn btn-outline-primary btn-sm mb-3 ">add to draft team</a>
+
+            <a href="" class="btn btn-outline-secondary btn-sm mb-3">details</a>
         </div>
     </div>
-    {% if forloop.counter|divisibleby:2 %}</div><div class="row">{% endif %}
+    {% if forloop.counter|divisibleby:5 %}</div><div class="row">{% endif %}
     {% if forloop.last %}</div>{% endif %}
 {% endfor %}
 
