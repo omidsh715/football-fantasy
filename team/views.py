@@ -21,7 +21,7 @@ def team_remove(request, player_id):
     return redirect('team:detail')
 
 
-def team_detail(request):
+def draft_team(request):
     team = Team(request)
     print(request.session)
-    return render(request, 'team/detail.html', {'team': team})
+    return render(request, 'team/draft_team.html', {'team': team})

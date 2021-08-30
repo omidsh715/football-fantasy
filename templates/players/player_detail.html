@@ -1,9 +1,59 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="container">
+    <div class="row mt-4 ">
 
-<div class="container" >
+        <div class="col-md-5 d-flex float-left ">
 
+
+            <img class="img-fluid" src="https://i.stack.imgur.com/6CecU.jpg">
+
+
+        </div>
+
+        <div class="col-lg-5 d-flex m-5 ">
+            <div class="row d-flex mb-3">
+                <div><h3>{{player.firstname}} {{player.lastname}}</h3></div>
+            <div class="row d-flex">
+
+                <table class="table">
+
+                    <thead>
+
+                    <tr>
+                        <th scope="col">position</th>
+                        <th scope="col">club</th>
+                        <th scope="col">price</th>
+
+                    </tr>
+                </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{player.position}}</td>
+                        <td>{{player.club}}</td>
+                        <td>{{player.price}}</td>
+
+
+
+                    </tbody>
+
+                </table>
+
+            </div>
+                <div>
+
+                    <form action="{% url 'team:add' player.id %}" method="post" >
+                        <input type="submit" class="btn btn-outline-primary" value="add to draft team">
+
+                        {% csrf_token %}
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
 </div>
 
 {% endblock %}

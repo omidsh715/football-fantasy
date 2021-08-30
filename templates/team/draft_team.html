@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
-{% load static %}
+
 {% block content %}
 
 <div class="container mb-4 mt-3" >
 
-    <h2>Players List</h2>
+    <h2>Draft team</h2>
 
 </div>
 <div class="container" >
-    {% for player in players %}
+    {% for player in team %}
 
     {% if forloop.first %}<div class="row">{% endif %}
     <div class="col-sm-auto mb-3">
@@ -28,5 +28,6 @@
 
 
 </div>
+
 
 {% endblock %}
