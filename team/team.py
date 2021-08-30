@@ -1,4 +1,5 @@
-
+from .models import TeamModel
+from week.models import Week
 from players.models import Player
 from django.conf import settings
 
@@ -6,6 +7,7 @@ from django.conf import settings
 class Team(object):
 
     def __init__(self, request):
+        self.user = request.user
         self.session = request.session
         team = self.session.get(settings.TEAM_SESSION_ID)
         if not team:
@@ -62,3 +64,5 @@ class Team(object):
 
         if gk_count > 1 or def_count > 4 or mid_count > 4 or fw_count > 2:
             return False
+
+        return self.team

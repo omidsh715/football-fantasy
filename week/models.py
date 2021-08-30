@@ -6,9 +6,9 @@ from django.utils import timezone
 class CurrentWeekManager(models.Manager):
     def get_queryset(self):
         weeks = super().get_queryset().all()
-        for week_start in weeks:
-            if timezone.now() < week_start.start_day:
-                return week_start
+        for week in weeks:
+            if timezone.now() < week.start_day:
+                return week
 
 
 class Week(models.Model):
