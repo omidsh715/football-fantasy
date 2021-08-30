@@ -14,9 +14,12 @@
     <div class="col-sm-auto mb-3">
         <div class="card" style="width: 12rem;">
             <img class="card-img-top" src="https://i.stack.imgur.com/6CecU.jpg">
-            <h5 class="card-title mt-2 m-auto ">{{player.firstname}} {{player.lastname}}</h5>
-            <p class="card-text"> lurem ipsum</p>
-            <a  href="" class="btn btn-outline-primary btn-sm mb-3 ">add to draft team</a>
+            <h5 class="card-title mt-2 m-auto mb-2 ">{{player.firstname}} {{player.lastname}}</h5>
+            <p class="card-text m-auto mb-4"> lurem ipsum</p>
+            <form method="post" action="{% url 'team:add' player.id %}">
+                <input type="submit" class="btn btn-outline-primary btn-lg mb-3 " value="add to draft team">
+                {% csrf_token %}
+            </form>
 
             <a href="{% url 'players:detail' player.id %}" class="btn btn-outline-secondary btn-sm mb-3">details</a>
         </div>
