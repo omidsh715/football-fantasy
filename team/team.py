@@ -62,7 +62,7 @@ class Team(object):
             elif value['player_pos'] == 'FW':
                 fw_count += 1
 
-        if gk_count > 1 or def_count > 4 or mid_count > 4 or fw_count > 2:
+        if gk_count != 1 or def_count != 4 or mid_count != 4 or fw_count != 2:
             return False
 
         return self.team

@@ -4,7 +4,8 @@ from players.models import Player
 from .team import Team
 from .models import TeamModel
 from week.models import Week
-
+from django.views.generic.list import ListView
+from django.contrib import messages
 # Create your views here.
 
 
@@ -41,16 +42,26 @@ def confirm(request):
     team = Team(request)
     week = Week.current_week.all()
     confirmed_team = team.confirm_team()
-    if not team:
+    if not confirmed_team:
+        messages.error(request, "can't save your draft team")
         return redirect('team:draft')
     TeamModel.objects.update_or_create(week=week, user=request.user, team=confirmed_team) # noqa
+    messages.success(request, "your team is saved")
     return redirect('team:main')
 
 
-def main_team(request,):
+class TeamsList(ListView):
+    template_name = 'team/list_of_teams.html'
+    context_object_name = 'teams'
+
+    def get_queryset(self):
+        return TeamModel.objects.filter(user=self.request.user,)
+
+
+def show_team(request, week=Week.current_week.all()):
     team = get_object_or_404(TeamModel, user=request.user, week=week)
     player_ids = team.team.keys()
     players = Player.objects.filter(id__in=player_ids) # noqa
-    return render(request, 'team/main_team.html', {'players': players})
+    return render(request, 'team/team.html', {'players': players})
 
 

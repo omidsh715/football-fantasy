@@ -9,6 +9,17 @@
 </div>
 
 
+{% if messages %}
+
+<div class="container alert alert-success" role="alert">
+    {% for message in messages %}
+    <p {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+    {% endfor %}
+</div>
+
+{% endif %}
+
+
 <div class="container" >
     {% for player in players %}
 

@@ -8,6 +8,18 @@
 
 </div>
 
+
+{% if messages %}
+
+<div class="container alert alert-warning" role="alert">
+    {% for message in messages %}
+    <p {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+    {% endfor %}
+</div>
+
+{% endif %}
+
+
 <div class="container mb-5 mt-4 ">
 
     <div class="row justify-content-center">
