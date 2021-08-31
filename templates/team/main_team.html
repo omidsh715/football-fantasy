@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mb-4 mt-3" >
+
+    <h2>Main team</h2>
+
+</div>
+
+
+<div class="container" >
+    {% for player in players %}
+
+    {% if forloop.first %}<div class="row">{% endif %}
+    <div class="col-sm-auto mb-3">
+        <div class="card" style="width: 12rem;">
+            <img class="card-img-top" src="https://i.stack.imgur.com/6CecU.jpg">
+            <h5 class="card-title mt-2 m-auto ">{{player.firstname}} {{player.lastname}}</h5>
+            <p class="card-text">{{player.position}}</p>
+
+
+            <a href="{% url 'players:detail' player.id %}" class="btn btn-outline-secondary btn-sm mb-3">details</a>
+        </div>
+    </div>
+    {% if forloop.counter|divisibleby:5 %}</div><div class="row">{% endif %}
+    {% if forloop.last %}</div>{% endif %}
+{% endfor %}
+
+
+
+</div>
+
+
+{% endblock %}

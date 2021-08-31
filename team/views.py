@@ -16,6 +16,7 @@ def add_player(request, player_id):
     return redirect('team:draft')
 
 
+@require_POST
 def remove_player(request, player_id):
     team = Team(request)
     player = get_object_or_404(Player, id=player_id)
@@ -23,6 +24,7 @@ def remove_player(request, player_id):
     return redirect('team:draft')
 
 
+@require_POST
 def clear_draft(request):
     team = Team(request)
     team.clear()
@@ -31,16 +33,24 @@ def clear_draft(request):
 
 def draft_team(request):
     team = Team(request)
-    print(request.session)
     return render(request, 'team/draft_team.html', {'team': team})
 
 
+@require_POST
 def confirm(request):
     team = Team(request)
-    confirmed_team = team.confirm_team()
     week = Week.current_week.all()
-    print(week)
+    confirmed_team = team.confirm_team()
     if not team:
         return redirect('team:draft')
-    TeamModel.objects.create(week=week, user=request.user, team=confirmed_team) # noqa
-    return redirect('players:list')
+    TeamModel.objects.update_or_create(week=week, user=request.user, team=confirmed_team) # noqa
+    return redirect('team:main')
+
+
+def main_team(request,):
+    team = get_object_or_404(TeamModel, user=request.user, week=week)
+    player_ids = team.team.keys()
+    players = Player.objects.filter(id__in=player_ids) # noqa
+    return render(request, 'team/main_team.html', {'players': players})
+
+

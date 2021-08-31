@@ -24,7 +24,12 @@
           </li>
 
           <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{% url 'team:draft' %}">Draft team</a>
+              <a class="nav-link active" aria-current="page" href="{% url 'team:draft' %}">Draft Team</a>
+          </li>
+
+
+          <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'team:main' %}">Main Team</a>
           </li>
 
 
@@ -34,10 +39,10 @@
             {% if user.is_authenticated %}
             <a class="btn btn-danger btn-sm"
 
-                href="{% url 'players:list' %}">logout</a>
+                href="{% url 'account:logout' %}">logout</a>
                 {% else %}
             <a class="btn btn-danger btn-sm"
-                href="{% url 'players:list' %}">logout</a>
+                href="{% url 'account:login' %}">login</a>
                 {% endif %}
         </li>
         </ul>
