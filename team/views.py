@@ -6,6 +6,7 @@ from .models import TeamModel
 from week.models import Week
 from django.views.generic.list import ListView
 from django.contrib import messages
+from points.models import PlayerPoint
 # Create your views here.
 
 
@@ -60,8 +61,11 @@ class TeamsList(ListView):
 
 def show_team(request, week=Week.current_week.all()):
     team = get_object_or_404(TeamModel, user=request.user, week=week)
+
     player_ids = team.team.keys()
     players = Player.objects.filter(id__in=player_ids) # noqa
-    return render(request, 'team/team.html', {'players': players})
+    points = PlayerPoint.objects.filter(week=week, player__in=players)
+    total_points = sum([item.point for item in points])
+    return render(request, 'team/team.html', {'players': players, 'points':points, 'total_points': total_points})
 
 
