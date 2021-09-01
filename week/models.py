@@ -4,6 +4,11 @@ from django.utils import timezone
 
 
 class CurrentWeekManager(models.Manager):
+    """
+
+    returns current week
+
+    """
     def get_queryset(self):
         weeks = super().get_queryset().all()
         for week in weeks:

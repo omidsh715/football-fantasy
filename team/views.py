@@ -12,6 +12,11 @@ from points.models import PlayerPoint
 
 @require_POST
 def add_player(request, player_id):
+    """
+
+    receives player id and add it to team session
+
+    """
     team = Team(request)
     player = get_object_or_404(Player, id=player_id)
     team.add(player)
@@ -20,6 +25,12 @@ def add_player(request, player_id):
 
 @require_POST
 def remove_player(request, player_id):
+    """
+
+    receives player id and remove it from team session
+
+    """
+
     team = Team(request)
     player = get_object_or_404(Player, id=player_id)
     team.remove(player)
@@ -28,6 +39,12 @@ def remove_player(request, player_id):
 
 @require_POST
 def clear_draft(request):
+    """
+
+    clear team session
+
+    """
+
     team = Team(request)
     team.clear()
     return redirect('team:draft')
@@ -40,6 +57,12 @@ def draft_team(request):
 
 @require_POST
 def confirm(request):
+    """
+
+    validate team session and if it's valid saves it to TeamModel
+    if it's not valid show an error massage
+
+    """
     team = Team(request)
     week = Week.current_week.all()
     confirmed_team = team.confirm_team()
@@ -52,6 +75,9 @@ def confirm(request):
 
 
 class TeamsList(ListView):
+    """
+    show list teams that user created within weeks
+    """
     template_name = 'team/list_of_teams.html'
     context_object_name = 'teams'
 
@@ -60,6 +86,12 @@ class TeamsList(ListView):
 
 
 def show_team(request, week=Week.current_week.all()):
+    """
+
+    show user's team of given week
+    default week is current week
+
+    """
     team = get_object_or_404(TeamModel, user=request.user, week=week)
 
     player_ids = team.team.keys()

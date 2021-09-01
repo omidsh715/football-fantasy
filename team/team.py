@@ -5,7 +5,12 @@ from django.conf import settings
 
 
 class Team(object):
+    """
 
+    create, a session for players that user have choose  and add, delete players on session or clear session
+    also can validate that user can confirm its team or not
+
+    """
     def __init__(self, request):
         self.user = request.user
         self.session = request.session
