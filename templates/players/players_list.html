@@ -13,7 +13,7 @@
     {% if forloop.first %}<div class="row">{% endif %}
     <div class="col-sm-auto mb-3">
         <div class="card" style="width: 12rem;">
-            <img class="card-img-top" src="https://i.stack.imgur.com/6CecU.jpg">
+            <img class="card-img-top" src="{{player.image.url}}">
             <h5 class="card-title mt-2 m-auto mb-2 ">{{player.firstname}} {{player.lastname}}</h5>
             <p class="card-text m-auto mb-4">{{player.position}}</p>
             <form method="post" action="{% url 'team:add' player.id %}">

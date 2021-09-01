@@ -18,6 +18,8 @@ class Player(models.Model):
 
     club = models.ForeignKey(Club, on_delete=models.CASCADE)
 
+    image = models.ImageField(default='default.jpg')
+
     price = models.IntegerField(default=0)
 
     def __str__(self):

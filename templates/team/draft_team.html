@@ -46,7 +46,7 @@
     {% if forloop.first %}<div class="row">{% endif %}
     <div class="col-sm-auto mb-3">
         <div class="card" style="width: 12rem;">
-            <img class="card-img-top" src="https://i.stack.imgur.com/6CecU.jpg">
+            <img class="card-img-top" src="{{player.image.url}}">
             <h5 class="card-title mt-2 m-auto ">{{player.firstname}} {{player.lastname}}</h5>
             <p class="card-text"> lurem ipsum</p>
             <a  href="" class="btn btn-outline-primary btn-sm mb-3 ">add to draft team</a>
